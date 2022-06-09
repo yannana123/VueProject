@@ -1,3 +1,11 @@
+/*
+ * @Author: Tedu 228322454@qq.com
+ * @Date: 2022-06-09 18:11:54
+ * @LastEditors: Tedu 228322454@qq.com
+ * @LastEditTime: 2022-06-09 21:04:40
+ * @FilePath: \VueProject\src\router\index.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomeView from '../views/HomeView.vue';
@@ -5,6 +13,26 @@ import HomeView from '../views/HomeView.vue';
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: '/registerWeight',
+    name: 'registerWeight',
+    component: () => import('../views/RegisterWeight.vue'),
+  },
+  {
+    path: '/RegisterHeight',
+    name: 'RegisterHeight',
+    component: () => import('../views/RegisterHeight.vue'),
+  },
+  {
+    path: '/registerAge',
+    name: 'registerAge',
+    component: () => import('../views/RegisterAge.vue'),
+  },
+  {
+    path: '/registerSex',
+    name: 'registerSex',
+    component: () => import('../views/RegisterSex.vue'),
+  },
   {
     // 此为首页预加载，其余路由懒加载
     path: '/',
