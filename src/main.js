@@ -18,7 +18,7 @@ Vue.use(ElementUI);
 
 import axios from 'axios';
 //默认前缀
-axios.defaults.baseURL = 'http://localhost:3000';
+// axios.defaults.baseURL = 'http://localhost:3000';
 import VueAxios from 'vue-axios';
 Vue.use(VueAxios, axios);
 

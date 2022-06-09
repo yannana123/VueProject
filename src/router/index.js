@@ -6,6 +6,11 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/friendsview',
+    name: 'Friendsview',
+    component: () => import('../views/FriendsView.vue'),
+  },
+  {
     // 此为首页预加载，其余路由懒加载
     path: '/',
     name: 'home',
