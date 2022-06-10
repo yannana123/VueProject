@@ -6,6 +6,11 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/friendcreate',
+    name: 'Friendscreate',
+    component: () => import('../views/FriendsCreate.vue'),
+  },
+  {
     path: '/friendsview',
     name: 'Friendsview',
     component: () => import('../views/FriendsView.vue'),
