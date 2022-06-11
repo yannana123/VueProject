@@ -13,6 +13,14 @@ import HomeView from '../views/HomeView.vue';
 Vue.use(VueRouter);
 
 const routes = [
+ {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/Login.vue'),
+    meta: {
+      title: '登录',
+    },
+  },
   {
     path: '/registerWeight',
     name: 'registerWeight',
@@ -51,5 +59,8 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
+});
 export default router;
