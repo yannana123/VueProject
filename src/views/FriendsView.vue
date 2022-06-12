@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar title="跑友圈">
+    <van-nav-bar title="跑友圈" fixed>
       <template #right>
         <router-link to="/friendcreate">
           <van-icon name="photo-o" size="2em" />
@@ -8,140 +8,41 @@
       </template>
     </van-nav-bar>
     <!-- 搜索 -->
-    <form action="/">
+    <form action="/" style="margin-top: 40px; width: 100vw">
       <van-search
-        v-model="value"
+        v-model="values"
         show-action
         placeholder="请输入搜索关键词"
         @search="onSearch"
         @cancel="onCancel"
       />
     </form>
-    <!-- 关注   热门     切换 -->
-    <van-tabs swipeable>
-      <van-tab title="关注" name="a">
+    <!-- 搜索后 -->
+    <div v-if="uuser">
+      {{ uuser }}
+      <friends-navbar />
+    </div>
+    <!--搜索前  关注   热门     切换 -->
+    <van-tabs swipeable v-else>
+      <van-tab title="热门" name="a">
         <!-- 友圈详情：遍历得到多组数据 -->
-        <div class="box">
-          <!-- 头像 -->
-          <div class="box_xq">
-            <van-image
-              round
-              fit="cover"
-              width="3rem"
-              height="3rem"
-              src="https://img01.yzcdn.cn/vant/cat.jpeg"
-            />
-            <div class="box_user">
-              <span>用户名：数据库拿111</span>
-              <span>发布时间:数据库拿</span>
-            </div>
-          </div>
-          <!-- 个人心情 -->
-          <div class="box_text">
-            阿斯顿发送到发送到发送到阿斯蒂芬阿斯蒂芬，阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德阿斯蒂芬阿萨。
-          </div>
-          <!-- 图片 -->
-          <div class="box_img">
-            <van-image
-              width="17rem"
-              height="17rem"
-              fit="cover"
-              src="https://img01.yzcdn.cn/vant/cat.jpeg"
-            />
-          </div>
-          <van-divider />
-          <!-- 点赞 -->
-          <div class="checked">
-            <div class="checkedimg">
-              <van-checkbox v-model="zan_checked">
-                <template #icon="props">
-                  <img
-                    class="img-icon"
-                    :src="props.checked ? zan_active : zan_inactive"
-                  />
-                  <span>赞数</span>
-                </template>
-              </van-checkbox>
-            </div>
-            <div class="checkedimg">
-              <van-checkbox v-model="like_checked">
-                <template #icon="props">
-                  <img
-                    class="img-icon"
-                    :src="props.checked ? like_active : like_inactive"
-                  />
-                  <span>喜欢</span>
-                </template>
-              </van-checkbox>
-            </div>
-          </div>
-        </div>
+        <friends-navbar />
+        <friends-navbar />
+        <span>搜索测试</span>
+        <div style="height: 60px"></div>
+        <!-- 防止底部显示不出 -->
       </van-tab>
 
-      <van-tab title="热门" name="b">
+      <van-tab title="关注" name="b">
         <!-- 友圈详情：遍历得到多组数据 -->
-        <div class="box">
-          <!-- 头像 -->
-          <div class="box_xq">
-            <van-image
-              round
-              fit="cover"
-              width="3rem"
-              height="3rem"
-              src="https://img01.yzcdn.cn/vant/cat.jpeg"
-            />
-            <div class="box_user">
-              <span>用户名：数据库拿222</span>
-              <span>发布时间:数据库拿222</span>
-            </div>
-          </div>
-          <!-- 个人心情 -->
-          <div class="box_text">
-            阿给对方是个啥地方官单方事故森岛帆高森岛帆高水电费告诉对方告诉对方感受到法规森岛帆高
-          </div>
-          <!-- 图片 -->
-          <div class="box_img">
-            <van-image
-              width="17rem"
-              height="17rem"
-              fit="cover"
-              :src="require('/public/img/weather/100.png')"
-            />
-          </div>
-          <van-divider />
-          <!-- 点赞 -->
-          <div class="checked">
-            <div class="checkedimg">
-              <van-checkbox v-model="zan_checked">
-                <template #icon="props">
-                  <img
-                    class="img-icon"
-                    :src="props.checked ? zan_active : zan_inactive"
-                  />
-                  <span>赞数</span>
-                </template>
-              </van-checkbox>
-            </div>
-            <div class="checkedimg">
-              <van-checkbox v-model="like_checked">
-                <template #icon="props">
-                  <img
-                    class="img-icon"
-                    :src="props.checked ? like_active : like_inactive"
-                  />
-                  <span>喜欢</span>
-                </template>
-              </van-checkbox>
-            </div>
-          </div>
-        </div>
+        <friends-navbar />
+        <div style="height: 60px"></div>
+        <!-- 防止底部显示不出 -->
       </van-tab>
-
-      <van-tab title="搜索" name="c"> 测试3 </van-tab>
     </van-tabs>
 
     <!-- 底部 -->
-    <van-tabbar>
+    <van-tabbar fixed>
       <van-tabbar-item icon="home-o">健康</van-tabbar-item>
       <van-tabbar-item icon="location-o">附件</van-tabbar-item>
       <van-tabbar-item icon="logistics">运动</van-tabbar-item>
@@ -153,10 +54,11 @@
 
 <script>
 import { Toast } from "vant";
+import FriendsNavbar from "@/components/FriendsNavbar.vue";
 export default {
+  components: { FriendsNavbar },
   data() {
     return {
-      value: "", //搜索的内容
       uname: "测试3", //用户名
       //点赞，数据库判断
       zan_checked: true,
@@ -166,11 +68,41 @@ export default {
       like_checked: true,
       like_active: require("/public/img/like.png"),
       like_inactive: require("/public/img/like-active.png"),
+
+      //遍历的内容
+      friendsbox: "",
+
+      //搜索内容
+      uuser: "", //搜索后内容绑定数据
+      values: "",
     };
   },
+  watch: {
+    values(newvalue, oldvalue) {
+      this.onSearch(newvalue);
+    },
+  },
+  mounted() {
+    this.onSearch();
+  },
   methods: {
+    //盒子遍历数据
+    getBox() {
+      // let url; //地址
+      // let params; //值
+      // this.axios.post(url, params).then((res) => {
+      //   console.log(res);
+      //    this.friendsbox=res................
+      // });
+    },
+
     //搜索事件
-    onSearch(val) {},
+    onSearch(val) {
+      //在数据拿出uuser用户名与输入值进行对比
+      console.log(val);
+      const values = val;
+      this.uuser = values;
+    },
     onCancel() {},
   },
 };
@@ -179,46 +111,6 @@ export default {
 <style lang="scss" scoped>
 .van-hairline--bottom:after {
   border-bottom-width: 0px;
-}
-.box {
-  padding: 10px;
-  background-color: white;
-  margin-bottom: 10px;
-  .box_xq {
-    display: flex;
-    margin-bottom: 10px;
-    .box_user {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      margin-left: 10px;
-      font-size: 0.5rem;
-    }
-  }
-  .box_text {
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-  .box_img {
-    text-align: center;
-  }
-}
-.img-icon {
-  height: 20px;
-}
-.checked {
-  display: inline-flex;
-  justify-content: space-evenly;
-  .checkedimg {
-    width: 50vw;
-    .van-checkbox {
-      padding: 0 0 0 15vw;
-    }
-    span {
-      font-size: 0.8rem;
-      vertical-align: middle;
-    }
-  }
 }
 </style>
 <style>

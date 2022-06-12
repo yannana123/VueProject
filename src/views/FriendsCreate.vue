@@ -12,7 +12,7 @@
     <!-- 上传信息 -->
     <div class="box">
       <van-field
-        v-model="message"
+        v-model="fvalue"
         rows="3"
         autosize
         type="textarea"
@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       imgs: [], //图片
-      value1: "", //内容
+      fvalue: "", //内容
     };
   },
   methods: {
