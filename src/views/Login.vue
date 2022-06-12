@@ -4,6 +4,7 @@
     <h1>登录</h1>
     <van-form @submit="onSubmit">
       <van-field
+        clearable
         name="uphone"
         class="item"
         v-model="uphone"
@@ -22,6 +23,9 @@
         v-model="upwd"
         type="password"
         placeholder="请输入密码"
+        right-icon="closed-eye"
+        clearable
+        click-right-icon="aaa"
         :rules="[
           {
             validator: validatorpwd,
@@ -29,8 +33,8 @@
             message: '请输入正确密码',
           },
         ]"
-      />
-
+      >
+      </van-field>
       <div style="margin: 16px">
         <van-button
           :disabled="btn"
@@ -66,6 +70,11 @@ export default {
     };
   },
   methods: {
+    //密码可见
+    aaa(event) {
+      console.log("111");
+      console.log(event);
+    },
     // 点击按钮
     onSubmit(values) {
       if (!this.checked) {
@@ -81,7 +90,8 @@ export default {
             let url = `/users/datas?uphone=${values.uphone}`;
             console.log(url);
             this.axios.get(url).then((res) => {
-              console.log(res);
+              // console.log(res);
+              sessionStorage.setItem("user", JSON.stringify(res));
             });
             // console.log(111);
           } else {
