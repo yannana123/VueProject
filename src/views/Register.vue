@@ -44,7 +44,9 @@
         ]"
       >
         <template #button>
-          <van-button size="small" type="primary">发送验证码</van-button>
+          <van-button size="small" @click="sendMsg" type="primary"
+            >发送验证码</van-button
+          >
         </template>
       </van-field>
       <!-- 验证码 -->
@@ -81,16 +83,79 @@ export default {
       return this.pwd == this.repwd;
     },
     regist() {
-      let param = `username=${this.uname}&password=${this.pwd}&uphone=${this.phone}&sms=${this.sms}`;
-      this.axios.post("/register", param).then((res) => {
-        console.log("注册结果：", res);
+      if (this.uname == "" || this.uname == null) {
+        this.$messagebox("警告", "用户名不能为空！");
+        return;
+      }
+      this.axios.post("/users/checkSms", `phone=${this.phone}`).then((res) => {
         if (res.data.code == 200) {
-          // 注册成功
-          this.$messagebox("注册成功", "恭喜！");
-          this.$router.push("/registerSex");
+          if (res.data.msg == this.sms) {
+            let param = `uname=${this.uname}&upwd=${this.pwd}&uphone=${this.phone}`;
+            this.axios.post("/users/register", param).then((res) => {
+              console.log("注册结果：", res);
+              if (res.data.code == 200) {
+                // 注册成功
+                this.$messagebox("注册成功", "恭喜！");
+                this.$router.push("/registerSex");
+              } else {
+                // 注册失败
+                this.$toast("注册失败");
+              }
+            });
+          } else {
+            this.$toast("验证码错误");
+          }
         } else {
-          // 注册失败
-          this.$toast("该用户已存在");
+          this.$toast("请先发送短信");
+        }
+      });
+    },
+    sendMsg() {
+      const sms = require("ali-sms");
+      const accessKeyID = process.env.ALI_SMS_ACCESSKEYID;
+      const accessKeySecret = process.env.ALI_SMS_ACCESSKEYSECRET;
+      let phone = this.phone;
+      let RandomSixStr = "";
+      for (let i = 0; i < 6; i++) {
+        RandomSixStr += String(Math.floor(Math.random() * 10));
+      }
+
+      const config = {
+        accessKeyID: "LTAI4FqCcEPVBEio7PxVRY4c",
+        accessKeySecret: "u9AI74QBN8Fzv00d8hHS3NLsUXOc3E",
+        paramString: { code: RandomSixStr },
+        recNum: [phone],
+        signName: "星星电竞新闻网站",
+        templateCode: "SMS_181191317",
+      };
+      sms(config, (err, body) => {
+        let jsonObj = JSON.parse(body);
+        // if (jsonObj.Code == "OK") {
+        let param = `phone=${this.phone}&sms=${RandomSixStr}`;
+        this.axios.post("/users/sendSms", param).then((res) => {
+          if (res.data.code == 200) {
+            // 注册成功
+            this.$toast("发送成功");
+            // this.$router.push("/registerSex");
+          } else {
+            // 注册失败
+            this.$toast("该用户已存在");
+          }
+        });
+        // }
+      });
+    },
+    checkSms(phone) {
+      let param = `phone=${phone}`;
+      this.axios.post("/users/checkSms", param).then((res) => {
+        if (res.data.code == 200) {
+          if (res.data.msg == this.sms) {
+            return success;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
         }
       });
     },

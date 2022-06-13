@@ -4,14 +4,14 @@
     <registerNav />
     <!-- 内容 -->
     <div class="nr">
-      <h3>请选择您的出生日期：</h3>
+      <h2>请选择您的出生日期：</h2>
       <div class="age">
         <!-- input框 -->
         <!-- <van-field :value="val" /> -->
         <!-- 日期选择器 -->
         <van-datetime-picker
           v-model="currentDate"
-          type="year-month"
+          type="date"
           :min-date="minDate"
           :max-date="maxDate"
           @confirm="click"
@@ -34,9 +34,13 @@ export default {
     };
   },
   methods: {
-    click(value) {
-      let now = new Date();
-      let age = now.getFullYear() - value.getFullYear();
+    click(d) {
+      let age =
+        d.getFullYear() +
+        "-" +
+        (d.getMonth() + 1 < 10 ? "0" + (d.getMonth() + 1) : d.getMonth() + 1) +
+        "-" +
+        (d.getDate() + 1 < 10 ? "0" + (d.getDate() + 1) : d.getDate() + 1);
       console.log(age);
       this.$router.push(`/registerHeight?sex=${this.sex}&age=${age}`);
     },

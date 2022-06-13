@@ -71,13 +71,9 @@ export default {
   margin: 80vh 10vw 20vh 10vw;
 
   .van-button {
-    border-color: #f3bc47;
-    background-color: #f3bc47;
-
-    :active {
-      background-color: rgba($color: #f3bc47, $alpha: 0.7);
-      color: #e4e5e6;
-    }
+    border-color: #f3bc45;
+    background-color: #f3bc45;
+    font-size: 18px;
   }
 
   .van-button:last-child {
