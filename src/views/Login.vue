@@ -18,14 +18,15 @@
         ]"
       />
       <van-field
+        ref="upwd"
         name="upwd"
         class="item"
         v-model="upwd"
-        type="password"
+        :type="!passwordState ? 'password' : 'text'"
         placeholder="请输入密码"
-        right-icon="closed-eye"
+        :right-icon="passwordState ? 'eye-o' : 'closed-eye'"
         clearable
-        click-right-icon="aaa"
+        @click-right-icon="passwordState = !passwordState"
         :rules="[
           {
             validator: validatorpwd,
@@ -67,14 +68,10 @@ export default {
       upwd: "",
       checked: false,
       btn: true,
+      passwordState: false, //密码可见
     };
   },
   methods: {
-    //密码可见
-    aaa(event) {
-      console.log("111");
-      console.log(event);
-    },
     // 点击按钮
     onSubmit(values) {
       if (!this.checked) {
@@ -91,7 +88,8 @@ export default {
             console.log(url);
             this.axios.get(url).then((res) => {
               // console.log(res);
-              sessionStorage.setItem("user", JSON.stringify(res));
+              sessionStorage.setItem("user", JSON.stringify(res.data.msg[0]));
+              this.$router.push("/index");
             });
             // console.log(111);
           } else {
@@ -115,13 +113,22 @@ export default {
     },
   },
   watch: {
+    // 按钮不可用
     upwd(newValue, oldValue) {
-      console.log(this.validator());
-      console.log(this.validatorpwd());
-      if (!this.validator() && !this.validatorpwd()) {
+      // console.log(this.validator(this.uphone));
+      // console.log(this.validatorpwd(newValue));
+      if (this.validator(this.uphone) && this.validatorpwd(newValue)) {
         this.btn = false;
+      } else {
+        this.btn = true;
       }
-      console.log(newValue);
+    },
+    uphone(newValue, oldValue) {
+      if (this.validator(newValue) && this.validatorpwd(this.upwd)) {
+        this.btn = false;
+      } else {
+        this.btn = true;
+      }
     },
   },
 };
