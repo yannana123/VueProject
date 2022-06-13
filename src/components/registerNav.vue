@@ -24,10 +24,13 @@ export default {
 
 <style lang="scss" scoped>
 .van-nav-bar {
-  background-color: #000;
-  color: #fff;
+  background-color: #282c2f;
+  color: #e4e5e6;
 }
 ::v-deep .van-nav-bar .van-icon {
   color: #aaa;
+}
+[class*="van-hairline"]::after {
+  border: none;
 }
 </style>

@@ -57,10 +57,10 @@ export default {
 
 <style lang="scss" scoped>
 .bd {
-  background-color: #000;
+  background-color: #282c2f;
   width: 100vw;
   height: 100vh;
-  color: #fff;
+  color: #e4e5e6;
 }
 .nr {
   padding: 5vw;

@@ -99,23 +99,23 @@ export default {
 </script>
 <style lang="scss">
 .bd {
-  background-color: #000;
+  background-color: #282c2f;
   width: 100vw;
   height: 100vh;
-  color: #fff;
+  color: #e4e5e6;
 }
 .van-field__control {
-  color: #fff;
+  color: #e4e5e6;
 }
 .van-cell {
-  background-color: #000;
+  background-color: #282c2f;
 }
 .van-cell::after {
   border: none;
 }
-.van-checkbox__label > .aaaa {
-  color: #ccc;
-}
+// .van-checkbox__label > .aaaa {
+//   color: #e4e5e6;
+// }
 .van-cell {
   margin: 10px auto;
 }

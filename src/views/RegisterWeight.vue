@@ -65,16 +65,16 @@ export default {
 </script>
 <style>
 .van-field__control {
-  color: #fff;
+  color: #e4e5e6;
 }
 </style>
 
 <style lang="scss" scoped>
 .bd {
-  background-color: #000;
+  background-color: #282c2f;
   width: 100vw;
   height: 100vh;
-  color: #fff;
+  color: #e4e5e6;
 }
 .nr {
   padding: 5vw;
@@ -82,9 +82,9 @@ export default {
 .van-field {
   margin-top: 20vh;
   font-size: 1.5em;
-  background-color: #000;
+  background-color: #282c2f;
 }
 .van-number-keyboard {
-  color: #000;
+  color: #282c2f;
 }
 </style>

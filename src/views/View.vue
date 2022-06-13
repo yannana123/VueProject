@@ -76,7 +76,7 @@ export default {
 
     :active {
       background-color: rgba($color: #f3bc47, $alpha: 0.7);
-      color: #fff;
+      color: #e4e5e6;
     }
   }
 
