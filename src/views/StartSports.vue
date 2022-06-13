@@ -1,10 +1,16 @@
 <template>
-  <div></div>
+  <div>
+    <map-container></map-container>
+  </div>
 </template>
 
 <script>
-export default {};
+import MapContainer from "@/components/MapContainer.vue";
+export default {
+  components: { MapContainer },
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss
+MapContainer" scoped>
 </style>
