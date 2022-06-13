@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <van-nav-bar left-arrow />
+    <register-nav></register-nav>
     <h1>登录</h1>
     <van-form @submit="onSubmit">
       <van-field
@@ -18,6 +18,7 @@
         ]"
       />
       <van-field
+        @touchstart.native.stop="upwdshow = true"
         ref="upwd"
         name="upwd"
         class="item"
@@ -61,7 +62,9 @@
 
 <script>
 import { Toast } from "vant";
+import registerNav from "@/components/registerNav.vue";
 export default {
+  components: { registerNav },
   data() {
     return {
       uphone: "",
@@ -135,6 +138,9 @@ export default {
 </script>
 <!-- 全局样式 -->
 <style lang="scss">
+.van-hairline--bottom::after {
+  border-bottom-width: 0;
+}
 .van-field__control {
   color: #fff;
 }

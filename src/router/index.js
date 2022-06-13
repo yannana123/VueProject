@@ -5,7 +5,15 @@ import HomeView from '../views/HomeView.vue';
 Vue.use(VueRouter);
 
 const routes = [
- {
+  {
+    path: '/startsports',
+    name: 'startsports',
+    component: () => import('../views/StartSports.vue'),
+    meta: {
+      title: '运动',
+    },
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('../views/Login.vue'),
