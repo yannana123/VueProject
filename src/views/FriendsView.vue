@@ -26,9 +26,11 @@
     <van-tabs swipeable v-else>
       <van-tab title="热门" name="a">
         <!-- 友圈详情：遍历得到多组数据 -->
-        <friends-navbar />
-        <friends-navbar />
-        <span>搜索测试</span>
+        <friends-navbar
+          v-for="box in friendsbox"
+          :key="box.cofgood"
+          :box="box"
+        />
         <div style="height: 60px"></div>
         <!-- 防止底部显示不出 -->
       </van-tab>
@@ -84,16 +86,18 @@ export default {
   },
   mounted() {
     this.onSearch();
+    this.getBox();
   },
   methods: {
     //盒子遍历数据
     getBox() {
       // let url; //地址
-      // let params; //值
-      // this.axios.post(url, params).then((res) => {
-      //   console.log(res);
-      //    this.friendsbox=res................
-      // });
+      let url = "http://localhost:3000/users/friends/datas?uuid=111111";
+      //值
+      this.axios.get(url).then((res) => {
+        console.log(res);
+        this.friendsbox = res.data.msg;
+      });
     },
 
     //搜索事件

@@ -1,5 +1,6 @@
 <template>
   <!-- 友圈详情：遍历得到多组数据 -->
+  <!-- 未关注 -->
   <div class="box">
     <!-- 头像 -->
     <div class="box_xq">
@@ -11,22 +12,17 @@
         src="https://img01.yzcdn.cn/vant/cat.jpeg"
       />
       <div class="box_user">
-        <span>用户名：数据库拿111</span>
-        <span>发布时间:数据库拿</span>
+        <span>{{ box.cuid }}</span>
+        <span>{{ box.coftime }}</span>
       </div>
     </div>
     <!-- 个人心情 -->
     <div class="box_text">
-      阿斯顿发送到发送到发送到阿斯蒂芬阿斯蒂芬，阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德阿斯蒂芬阿萨。
+      {{ box.cofword }}
     </div>
     <!-- 图片 -->
     <div class="box_img">
-      <van-image
-        width="17rem"
-        height="17rem"
-        fit="cover"
-        src="https://img01.yzcdn.cn/vant/cat.jpeg"
-      />
+      <van-image width="17rem" height="17rem" fit="cover" :src="box.cofimg" />
     </div>
     <van-divider />
     <!-- 点赞 -->
@@ -44,23 +40,28 @@
       </div>
       <div class="checkedimg">
         <van-checkbox v-model="like_checked">
-          <template #icon="props">
+          <template #icon="props" @click="getdood()">
             <img
               class="img-icon"
               :src="props.checked ? like_active : like_inactive"
             />
-            <span>喜欢</span>
+            <!-- 喜欢数 -->
+            <span>{{ box.cofgood }}</span>
           </template>
         </van-checkbox>
       </div>
     </div>
   </div>
+
+  <!-- 关注 -->
 </template>
 
 <script>
 export default {
+  props: ["box"],
   data() {
     return {
+      friendsoff: '',  
       //点赞，数据库判断
       zan_checked: true,
       zan_active: require("/public/img/zan.png"),
@@ -72,6 +73,7 @@ export default {
     };
   },
   methods: {
+    getgood() {},
     getBox() {
       // let url; //地址
       // let params; //值
