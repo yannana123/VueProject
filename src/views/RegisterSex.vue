@@ -11,7 +11,7 @@
       <h3>您的性别是：</h3>
       <div class="sex">
         <van-radio-group v-model="radio" direction="horizontal" class="imgs">
-          <van-radio name="1" @click.native="gore">
+          <van-radio name="1" @click.native="go">
             男
             <template #icon="props">
               <img
@@ -20,7 +20,7 @@
               />
             </template>
           </van-radio>
-          <van-radio name="2" @click.native="gore">
+          <van-radio name="0" @click.native="go">
             女
             <template #icon="props">
               <img
@@ -47,8 +47,9 @@ export default {
     };
   },
   methods: {
-    gore() {
-      this.$router.push("/RegisterAge");
+    go() {
+      console.log(this.radio);
+      this.$router.push(`/registerAge?sex=${this.radio}`);
     },
   },
 };

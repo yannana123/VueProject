@@ -27,6 +27,7 @@ export default {
   components: { registerNav },
   data() {
     return {
+      sex: this.$route.query.sex,
       minDate: new Date(1900, 0, 1),
       maxDate: new Date(),
       currentDate: new Date(),
@@ -34,8 +35,10 @@ export default {
   },
   methods: {
     click(value) {
-      console.log(value.getFullYear());
-      this.$router.push("/registerHeight");
+      let now = new Date();
+      let age = now.getFullYear() - value.getFullYear();
+      console.log(age);
+      this.$router.push(`/registerHeight?sex=${this.sex}&age=${age}`);
     },
   },
 };
@@ -51,8 +54,4 @@ export default {
 .nr {
   padding: 5vw;
 }
-// .van-datetime-picker {
-//   background-color: #000;
-//   color: #fff;
-// }
 </style>

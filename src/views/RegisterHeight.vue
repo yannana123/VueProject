@@ -6,8 +6,6 @@
     <div class="nr">
       <h3>请输入您的身高</h3>
       <van-field
-        readonly
-        clickable
         :value="value"
         placeholder="厘米"
         @touchstart.native.stop="show = true"
@@ -32,19 +30,31 @@ export default {
   components: { registerNav },
   data() {
     return {
+      sex: this.$route.query.sex,
+      age: this.$route.query.age,
       value: "",
       show: false,
-      value: "",
     };
   },
   methods: {
     go() {
-      this.$router.push("/RegisterWeight");
+      if (this.value == "") {
+        this.$messagebox("注意", "身高不能为空");
+      } else {
+        console.log(this.value);
+        this.$router.push(
+          `/registerWeight?sex=${this.sex}&age=${this.age}&height=${this.value}`
+        );
+      }
     },
   },
 };
 </script>
-
+<style>
+.van-field__control {
+  color: #fff;
+}
+</style>
 <style lang="scss" scoped>
 .bd {
   background-color: #000;

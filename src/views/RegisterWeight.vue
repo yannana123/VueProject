@@ -32,19 +32,42 @@ export default {
   components: { registerNav },
   data() {
     return {
+      sex: this.$route.query.sex,
+      age: this.$route.query.age,
+      height: this.$route.query.height,
       value: "",
       show: false,
-      value: "",
     };
   },
   methods: {
     go() {
-      // 跳转主界面
-      this.$router.push("/");
+      if (this.value == "") {
+        this.$messagebox("注意", "体重不能为空");
+      } else {
+        let param = `usex=${this.sex}&uage=${this.age}&uheight=${this.height}&uweight=${this.value}`;
+        console.log(param);
+        this.axios.post("/registerWeight", param).then((res) => {
+          console.log("结果", res);
+          if (res.data.code == 200) {
+            // 信息注册成功
+            this.$messagebox("填写完成", "恭喜！");
+            // 跳转主界面
+            this.$router.push("/");
+          } else {
+            // 信息注册失败
+            this.$toast("请完善基本信息");
+          }
+        });
+      }
     },
   },
 };
 </script>
+<style>
+.van-field__control {
+  color: #fff;
+}
+</style>
 
 <style lang="scss" scoped>
 .bd {
