@@ -4,24 +4,12 @@
     <registerNav />
     <!-- 内容 -->
     <div class="nr">
-      <h3>请输入您的体重</h3>
-      <van-field
-        readonly
-        clickable
-        :value="value"
-        placeholder="公斤"
-        @touchstart.native.stop="show = true"
-      >
+      <h2>请输入您的体重</h2>
+      <van-field v-model="value" placeholder="公斤">
         <template #button>
-          <van-button size="small" type="default" @click="go">确认</van-button>
+          <van-button size="normal" @click="go">确认</van-button>
         </template>
       </van-field>
-      <van-number-keyboard
-        v-model="value"
-        :show="show"
-        :maxlength="3"
-        @blur="show = false"
-      />
     </div>
   </div>
 </template>
@@ -36,7 +24,6 @@ export default {
       age: this.$route.query.age,
       height: this.$route.query.height,
       value: "",
-      show: false,
     };
   },
   methods: {
@@ -84,7 +71,10 @@ export default {
   font-size: 1.5em;
   background-color: #282c2f;
 }
-.van-number-keyboard {
-  color: #282c2f;
+.van-button {
+  background-color: #f3bc45;
+  color: #e4e5e6;
+  border-color: #f3bc45;
+  font-size: 16px;
 }
 </style>

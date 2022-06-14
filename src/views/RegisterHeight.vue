@@ -4,22 +4,12 @@
     <registerNav />
     <!-- 内容 -->
     <div class="nr">
-      <h3>请输入您的身高</h3>
-      <van-field
-        :value="value"
-        placeholder="厘米"
-        @touchstart.native.stop="show = true"
-      >
+      <h2>请输入您的身高</h2>
+      <van-field v-model="value" placeholder="厘米">
         <template #button>
-          <van-button size="small" type="default" @click="go">确认</van-button>
+          <van-button size="normal" @click="go">确认</van-button>
         </template>
       </van-field>
-      <van-number-keyboard
-        v-model="value"
-        :show="show"
-        :maxlength="3"
-        @blur="show = false"
-      />
     </div>
   </div>
 </template>
@@ -33,7 +23,6 @@ export default {
       sex: this.$route.query.sex,
       age: this.$route.query.age,
       value: "",
-      show: false,
     };
   },
   methods: {
@@ -72,5 +61,11 @@ export default {
 }
 .van-number-keyboard {
   color: #282c2f;
+}
+.van-button {
+  background-color: #f3bc45;
+  color: #e4e5e6;
+  border-color: #f3bc45;
+  font-size: 16px;
 }
 </style>
