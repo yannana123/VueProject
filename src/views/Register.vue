@@ -84,7 +84,23 @@ export default {
     },
     regist() {
       if (this.uname == "" || this.uname == null) {
-        this.$messagebox("警告", "用户名不能为空！");
+        this.$messagebox("注意", "用户名不能为空！");
+        return;
+      }
+      if (this.pwd == "" || this.pwd == null) {
+        this.$messagebox("注意", "密码不能为空！");
+        return;
+      }
+      if (this.repwd == "" || this.repwd == null) {
+        this.$messagebox("注意", "密码不能为空！");
+        return;
+      }
+      if (this.phone == "" || this.phone == null) {
+        this.$messagebox("注意", "手机号不能为空！");
+        return;
+      }
+      if (this.sms == "" || this.sms == null) {
+        this.$messagebox("注意", "验证码不能为空！");
         return;
       }
       this.axios.post("/users/checkSms", `phone=${this.phone}`).then((res) => {
