@@ -53,4 +53,7 @@ export default {
     margin-left: 20px;
   }
 }
+.van-nav-bar {
+  background-color: #23272a;
+}
 </style>

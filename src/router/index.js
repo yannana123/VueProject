@@ -5,7 +5,7 @@ import HomeView from '../views/HomeView.vue';
 Vue.use(VueRouter);
 
 const routes = [
- {
+  {
     path: '/login',
     name: 'login',
     component: () => import('../views/Login.vue'),
@@ -55,7 +55,7 @@ const routes = [
   },
   {
     // 此为首页预加载，其余路由懒加载
-    path: '/',
+    path: '/index',
     name: 'home',
     component: HomeView,
   },

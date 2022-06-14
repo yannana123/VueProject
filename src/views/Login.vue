@@ -84,13 +84,13 @@ export default {
 
           if (res.data.code == 200) {
             // console.log("登录成功");
-            let url = `/users/datas?uphone=${values.uphone}`;
-            console.log(url);
-            this.axios.get(url).then((res) => {
-              // console.log(res);
-              sessionStorage.setItem("user", JSON.stringify(res.data.msg[0]));
-              this.$router.push("/index");
-            });
+            // let url = `/users/datas?uphone=${values.uphone}`;
+            // console.log(url);
+            // this.axios.get(url).then((res) => {
+            //   // console.log(res);
+            sessionStorage.setItem("user", JSON.stringify(res.data.msg));
+            this.$router.push("/index");
+            // });
             // console.log(111);
           } else {
             Toast({

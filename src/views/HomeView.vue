@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>测试文字</div>
 </template>
 
 <script>
