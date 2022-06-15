@@ -84,8 +84,8 @@ export default {
         let parmas = `uphone=${values.uphone}&upwd=${values.upwd}`;
         this.axios.post("users/login", parmas).then((res) => {
           console.log(res);
-
           if (res.data.code == 200) {
+<<<<<<< HEAD
             // console.log("登录成功");
             // let url = `/users/datas?uphone=${values.uphone}`;
             // console.log(url);
@@ -95,6 +95,10 @@ export default {
             this.$router.push("/index");
             // });
             // console.log(111);
+=======
+            sessionStorage.setItem("user", JSON.stringify(res.data.msg));
+            this.$router.push("/index");
+>>>>>>> 8b65a21714b92619a2a31b85ee7d4db74824e7b3
           } else {
             Toast({
               message: "电话号码或密码错误",
