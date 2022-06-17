@@ -67,7 +67,7 @@ export default {
   },
   watch: {
     tabSelected(newValue, oldValue) {
-      console.log(oldValue,newValue);
+      console.log(oldValue, newValue);
       // console.log(this.$route.path.split("/").pop());
       if (newValue == this.$route.path.split("/").pop()) {
         return;
@@ -90,15 +90,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#tabbar{
-  background-color:#2E3235;
-  color:#A1a2a5 ;
-  position:absolute;
+#tabbar {
+  background-color: #2e3235;
+  color: #a1a2a5;
+  position: absolute;
   bottom: 0;
-  z-index:30;
+  z-index: 30;
 }
-.mint-tabbar > .mint-tab-item.is-selected{
-  background-color:#2E3235 !important;
+.mint-tabbar > .mint-tab-item.is-selected {
+  background-color: #2e3235 !important;
 }
-
 </style>
