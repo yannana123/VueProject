@@ -1,10 +1,19 @@
 <template>
-  <div></div>
+  <div class="startsports">
+    <map-container></map-container>
+    <van-button round type="info">圆形按钮</van-button>
+  </div>
 </template>
 
 <script>
-export default {};
+import MapContainer from "@/components/MapContainer.vue";
+export default {
+  components: { MapContainer },
+};
 </script>
 
 <style lang="scss" scoped>
+.startsports {
+  position: relative;
+}
 </style>

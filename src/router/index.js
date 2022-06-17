@@ -6,6 +6,45 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    // 此为首页预加载，其余路由懒加载
+    path: '/',
+    redirect: '/home/index'
+  },
+
+  {
+    path: '/home',
+    name: 'HomeView',
+    component: HomeView,
+    children: [{
+      meta: {
+        keepAlive:true // 指明当前路由需要保活
+      },
+      path: 'index',
+      name: 'index',
+      component: () => import('../views/IndexView.vue')
+    },
+    {
+      path: 'near',
+      name: 'near',
+      component: () => import('../views/NearView.vue')
+    },
+    {
+      path: 'sport',
+      name: 'sport',
+      component: () => import('../views/SportsView.vue')
+    },
+    {
+      path: 'friends',
+      name: 'Friends',
+      component: () => import('../views/FriendsView.vue')
+    },
+    {
+      path: 'user',
+      name: 'User',
+      component: () => import('../views/UserCenter.vue')
+    },]
+  },
+  {
     path: '/startsports',
     name: 'startsports',
     component: () => import('../views/StartSports.vue'),
@@ -56,22 +95,7 @@ const routes = [
     name: 'Friendscreate',
     component: () => import('../views/FriendsCreate.vue'),
   },
-  {
-    path: '/friendsview',
-    name: 'Friendsview',
-    component: () => import('../views/FriendsView.vue'),
-  },
-  {
-    // 此为首页预加载，其余路由懒加载
-    path: '/',
-    name: 'home',
-    component: HomeView,
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue'),
-  },
+
 ];
 
 const router = new VueRouter({

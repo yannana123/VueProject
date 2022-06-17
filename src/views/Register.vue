@@ -111,6 +111,14 @@ export default {
       });
     },
     sendMsg() {
+      this.axios
+        .get(`users/register/phone?uphone=${this.phone}`)
+        .then((res) => {
+          console.log(res);
+          if (res.data.code == 201) {
+            return;
+          }
+        });
       const sms = require("ali-sms");
       const accessKeyID = process.env.ALI_SMS_ACCESSKEYID;
       const accessKeySecret = process.env.ALI_SMS_ACCESSKEYSECRET;
