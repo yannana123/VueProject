@@ -86,7 +86,7 @@ export default {
           console.log(res);
           if (res.data.code == 200) {
             sessionStorage.setItem("user", JSON.stringify(res.data.msg));
-            this.$router.push("/index");
+            this.$router.push("/home/index");
           } else {
             Toast({
               message: "电话号码或密码错误",

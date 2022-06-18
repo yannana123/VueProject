@@ -43,14 +43,6 @@
       </van-tab>
     </van-tabs>
 
-    <!-- 底部 -->
-    <van-tabbar fixed>
-      <van-tabbar-item icon="home-o">健康</van-tabbar-item>
-      <van-tabbar-item icon="location-o">附件</van-tabbar-item>
-      <van-tabbar-item icon="logistics">运动</van-tabbar-item>
-      <van-tabbar-item icon="friends-o">好友</van-tabbar-item>
-      <van-tabbar-item icon="user-o">我的</van-tabbar-item>
-    </van-tabbar>
   </div>
 </template>
 
